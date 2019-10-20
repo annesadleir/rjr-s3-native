@@ -1,0 +1,3 @@
+#!/bin/sh
+set -euo pipefail
+./rjr-s3-native -Djavax.net.ssl.trustStore=cacerts -Djavax.net.ssl.trustAnchors=cacerts
