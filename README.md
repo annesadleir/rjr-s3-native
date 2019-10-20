@@ -20,7 +20,7 @@ That `native-image` command is working for me but with a warning about a NoClass
 `Warning: class initialization of class io.netty.util.internal.logging.Log4JLogger failed with exception java.lang.NoClassDefFoundError: org/apache/log4j/Priority. This class will be initialized at run time because option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=io.netty.util.internal.logging.Log4JLogger to explicitly request delayed initialization of this class.`
 
 ## deploying to AWS
-Ignoring that error, I can then create a zip to deploy.  It requires three? things
+Ignoring that error, I can then create a zip to deploy.  It requires four things
 * the `bootstrap` file from the root of this repo.  This is called by AWS to start the custom runtime.
 It needs to be made executable e.g. `chmod 777 bootstrap`
 * the native executable made by the native image tool, also made executable using chmod
@@ -29,7 +29,8 @@ It needs to be made executable e.g. `chmod 777 bootstrap`
 I shouldn't need this if I've taken the `libsunec.so` from GraalVM, but I was still getting the empty truststore error.
 I took the `cacerts` file from GraalVM at `/jre/lib/security`.
 
-`zip rjr-s3-native.zip bootstrap rjr-s3-native libsunec.so`
+Zip up the deployable with this command:  
+`zip rjr-s3-native.zip bootstrap rjr-s3-native libsunec.so cacerts`
 
 You need the AWS CLI available, and to have set it up using the `aws configure` command. 
 See [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) 
