@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>uk.co.littlestickyleaves</groupId>
+    <artifactId>rjr-s3-native</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
+
+    <dependencies>
+        <!-- runs the lambda runtime -->
+        <dependency>
+            <groupId>uk.co.littlestickyleaves</groupId>
+            <artifactId>rjr-aws-lambda-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- the S3 client, version 2 of AWS's Java SDK -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.9.21</version>
+        </dependency>
+
+<!--        &lt;!&ndash; basic slf4j implementation &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-simple</artifactId>-->
+<!--            <version>1.7.21</version>-->
+<!--        </dependency>-->
+
+        <!-- apache commons logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- substrate vm code needed for substituting LogFactory classes -->
+        <!-- https://github.com/DmPanov/graal-vs-apache-httpclient/blob/master/src/main/java/Main.java-->
+        <!-- see https://github.com/oracle/graal/issues/715-->
+        <!--        https://github.com/DmPanov/graal-vs-apache-httpclient/blob/master/build.gradle.kts-->
+        <!--        compile("org.apache.httpcomponents:httpclient:4.5.2")-->
+        <!--        compileOnly("com.oracle.substratevm:svm:GraalVM-$graalVersion") (== mvn provided scope)-->
+        <dependency>
+            <groupId>com.oracle.substratevm</groupId>
+            <artifactId>svm</artifactId>
+            <version>19.2.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.9</version>
+        </dependency>
+
+
+        <!-- https://github.com/oracle/graal/issues/671 -->
+        <!-- according to the issue, fixed by allowing incomplete classpath, but that's not my experience -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.2</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--testing dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.27.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
