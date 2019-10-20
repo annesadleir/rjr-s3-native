@@ -27,6 +27,7 @@ It needs to be made executable e.g. `chmod 777 bootstrap`
 * `libsunec.so`, taken from GraalVM at `/jre/lib/amd64` -- see [PR on libsunec.so](https://github.com/oracle/graal/pull/1604/files) 
 * `cacerts` -- according to [PR on libsunec.so](https://github.com/oracle/graal/pull/1604/files)
 I shouldn't need this if I've taken the `libsunec.so` from GraalVM, but I was still getting the empty truststore error.
+I took the `cacerts` file from GraalVM at `/jre/lib/security`.
 
 `zip rjr-s3-native.zip bootstrap rjr-s3-native libsunec.so`
 
