@@ -19,8 +19,33 @@ against the `TracingAgentPath` class.
 That `native-image` command is working for me but with a warning about a NoClassDefFoundError:  
 `Warning: class initialization of class io.netty.util.internal.logging.Log4JLogger failed with exception java.lang.NoClassDefFoundError: org/apache/log4j/Priority. This class will be initialized at run time because option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=io.netty.util.internal.logging.Log4JLogger to explicitly request delayed initialization of this class.`
 
+## deploying to AWS
 Ignoring that error, I can then create a zip to deploy.  It requires three? things
 * the `bootstrap` file from the root of this repo.  This is called by AWS to start the custom runtime.
 It needs to be made executable e.g. `chmod 777 bootstrap`
 * the native executable made by the native image tool, also made executable using chmod
-* `libsunec.so`, taken from GraalVM at `/jre/lib/amd64` (see [PR on libsunec.so](https://github.com/oracle/graal/pull/1604/files))
+* `libsunec.so`, taken from GraalVM at `/jre/lib/amd64` -- see [PR on libsunec.so](https://github.com/oracle/graal/pull/1604/files) 
+* `cacerts` -- according to [PR on libsunec.so](https://github.com/oracle/graal/pull/1604/files)
+I shouldn't need this if I've taken the `libsunec.so` from GraalVM, but I was still getting the empty truststore error.
+
+`zip rjr-s3-native.zip bootstrap rjr-s3-native libsunec.so`
+
+You need the AWS CLI available, and to have set it up using the `aws configure` command. 
+See [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) 
+and [Quickly configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)  
+You also need an AWS IAM role available which has lambda permissions and S3 permissions: see [Lambda Execution Roles](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html). 
+(I just attached the AWS-managed policies called `AmazonS3FullAccess` and `AWSLambdaBasicExecutionRole`.) 
+You'll need the `arn` for when you create the function.  
+
+This command creates the function:     
+`aws lambda create-function --function-name rjr-s3-native --zip-file fileb://~/linuxWorkarea/rjr-s3-native/rjr-s3-native.zip --handler function.handler --runtime provided --role arn:aws:iam::ROLE_ARN_HERE`  
+If it fails because the function already exists, you need to do  
+`aws lambda delete-function --function-name rjr-s3-native`
+
+At this point you could do with an S3 bucket with a file on with several lines of text. 
+Then you can invoke it like this:
+`aws lambda invoke --function-name rjr-s3-native --payload '{"bucket":"bucketName","fileKey":"fileName","lines":2}' response.txt`  
+It will return json that says what happened, and put any result into `result.txt`. 
+To see full details you'll need to look at the CloudWatch logs, which is most easily done by logging
+on to the AWS web console, looking at this specific lambda, and choosing the Monitoring tab.
+
