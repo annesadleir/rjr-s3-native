@@ -10,8 +10,8 @@ to be available to provide the Lambda runtime, so check it out and run `mvn clea
 Now compile this repo normally using maven, i.e.  
 `mvn clean package`  
 
-Then use GraalVM's `native-image` command to create the native executable:
-native-image --enable-http --enable-https --enable-url-protocols=http,https --enable-all-security-services -H:+JNI -cp ./target/rjr-s3-native-1.0.jar -Djava.net.preferIPv4Stack=true -H:Name=rjr-s3-native -H:Class=uk.co.littlestickyleaves.lambda.S3LambdaMain -H:+ReportUnsupportedElementsAtRuntime --allow-incomplete-classpath -H:+TraceClassInitialization --no-fallback --initialize-at-build-time
+Then use GraalVM's `native-image` command to create the native executable:  
+`native-image --enable-url-protocols=http,https -cp ./target/rjr-s3-native-1.0.jar -Djava.net.preferIPv4Stack=true -H:Name=rjr-s3-native -H:Class=uk.co.littlestickyleaves.lambda.S3LambdaMain -H:+ReportUnsupportedElementsAtRuntime --allow-incomplete-classpath -H:+TraceClassInitialization --no-fallback --initialize-at-build-time`
 
 NB The config in the `META-INF/native-image` folder of this repo was created using the [Tracing Agent](https://medium.com/graalvm/introducing-the-tracing-agent-simplifying-graalvm-native-image-configuration-c3b56c486271) 
 against the `TracingAgentPath` class.
