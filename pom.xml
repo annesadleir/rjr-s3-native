@@ -29,12 +29,12 @@
             <version>2.9.21</version>
         </dependency>
 
-<!--        &lt;!&ndash; basic slf4j implementation &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-simple</artifactId>-->
-<!--            <version>1.7.21</version>-->
-<!--        </dependency>-->
+        <!-- basic slf4j implementation -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
+        </dependency>
 
         <!-- apache commons logging -->
         <dependency>

@@ -2,6 +2,7 @@
   "resources":[
     {"pattern":"META-INF/services/software.amazon.awssdk.http.SdkHttpService"}, 
     {"pattern":"mozilla/public-suffix-list.txt"}, 
+    {"pattern":"org/slf4j/impl/StaticLoggerBinder.class"}, 
     {"pattern":"software/amazon/awssdk/services/s3/execution.interceptors"}, 
     {"pattern":"sun/net/idn/uidna.spp"}, 
     {"pattern":"sun/text/resources/unorm.icu"}
