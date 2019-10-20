@@ -15,7 +15,8 @@ public class TracingAgentPath {
     public static void main(String[] args) throws Exception {
         S3Client s3Client = S3Client.create();
         String input = "{\"bucket\":\"papirtape\",\"fileKey\":\"iwonder.txt\",\"lines\":2}";
-        new S3LineFetcher(s3Client).handleRaw(input);
+        String result = new S3LineFetcher(s3Client).handleRaw(input);
+        System.out.println(result);
     }
 
 }
