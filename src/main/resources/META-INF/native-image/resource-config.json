@@ -1,0 +1,9 @@
+{
+  "resources":[
+    {"pattern":"META-INF/services/software.amazon.awssdk.http.SdkHttpService"}, 
+    {"pattern":"mozilla/public-suffix-list.txt"}, 
+    {"pattern":"software/amazon/awssdk/services/s3/execution.interceptors"}, 
+    {"pattern":"sun/net/idn/uidna.spp"}, 
+    {"pattern":"sun/text/resources/unorm.icu"}
+  ]
+}

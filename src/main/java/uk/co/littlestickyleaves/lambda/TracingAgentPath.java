@@ -8,7 +8,7 @@ import software.amazon.awssdk.services.s3.S3Client;
  *
  * sample command:
  * $JAVA_HOME/bin/java -agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image
- * -cp target/rjr-s3-native-1.0.jar uk.co.littlestickyleaves.TracingAgentPath
+ * -cp target/rjr-s3-native-1.0.jar uk.co.littlestickyleaves.lambda.TracingAgentPath
  */
 public class TracingAgentPath {
 

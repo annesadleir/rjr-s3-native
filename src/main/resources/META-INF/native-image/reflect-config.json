@@ -1,0 +1,88 @@
+[
+{
+  "name":"java.lang.String"
+},
+{
+  "name":"org.apache.commons.logging.LogFactory"
+},
+{
+  "name":"org.apache.commons.logging.impl.Jdk14Logger",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"org.apache.commons.logging.impl.LogFactoryImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.apache.commons.logging.impl.WeakHashtable",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.apache.http.client.config.RequestConfig$Builder",
+  "methods":[{"name":"setNormalizeUri","parameterTypes":["boolean"] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.AddContentMd5HeaderInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.AsyncChecksumValidationInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.CreateBucketInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.CreateMultipartUploadRequestInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.DecodeUrlEncodedResponseInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.DisableDoubleUrlEncodingInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.EnableChunkedEncodingInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.EnableTrailingChecksumInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.EndpointAddressInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.ExceptionTranslationInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.GetBucketPolicyInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.PutObjectInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"software.amazon.awssdk.services.s3.internal.handlers.SyncChecksumValidationInterceptor",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"uk.co.littlestickyleaves.lambda.dto.LinesInstruction",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
+  "name":"uk.co.littlestickyleaves.lambda.dto.LinesResult",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+}
+]
